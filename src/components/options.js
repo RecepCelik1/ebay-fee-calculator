@@ -5,8 +5,8 @@ import { toggleSwitchFunc } from '../redux/optionSlice';
 const Options = () => {
     const dispatch = useDispatch()
 
-    const button = useSelector(state => state.options.toggle)
-
+    const button = useSelector(state => state.options)
+    
     const buttonSwitch = (section) => {
         dispatch(toggleSwitchFunc(section))
     }
@@ -80,18 +80,18 @@ const Options = () => {
                         <button
                         onClick={() => buttonSwitch("eBayStore")}
                         className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                            button ? 'bg-green-500' : 'bg-red-500'
+                            button.eBayStore ? 'bg-green-500' : 'bg-red-500'
                         } text-white px-2 py-1 rounded-full`}
                         >
                         <span
                             className={`${
-                            button ? 'translate-x-full' : 'translate-x-0'
+                            button.eBayStore ? 'translate-x-full' : 'translate-x-0'
                             } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
                         />
                         </button>
                         </div>
                     </div>
-                    {button && (
+                    {button.eBayStore && (
                         <div className='m-1'>
                             <Select
                                 className=''
@@ -108,14 +108,14 @@ const Options = () => {
                     <div className='flex justify-center items-center'>International Sale</div>
                     <div>
                     <button
-                      onClick={() => buttonSwitch("eBayStore")}
+                      onClick={() => buttonSwitch("internationalSale")}
                       className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                        button ? 'bg-green-500' : 'bg-red-500'
+                        button.internationalSale ? 'bg-green-500' : 'bg-red-500'
                       } text-white px-2 py-1 rounded-full`}
                     >
                       <span
                         className={`${
-                          button ? 'translate-x-full' : 'translate-x-0'
+                          button.internationalSale ? 'translate-x-full' : 'translate-x-0'
                         } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
                       />
                     </button>
@@ -126,20 +126,20 @@ const Options = () => {
                         <div className='flex justify-center items-center'>Promoted Listing</div>
                         <div>
                         <button
-                        onClick={() => buttonSwitch("eBayStore")}
+                        onClick={() => buttonSwitch("promotedListing")}
                         className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                            button ? 'bg-green-500' : 'bg-red-500'
+                            button.promotedListing ? 'bg-green-500' : 'bg-red-500'
                         } text-white px-2 py-1 rounded-full`}
                         >
                         <span
                             className={`${
-                            button ? 'translate-x-full' : 'translate-x-0'
+                            button.promotedListing ? 'translate-x-full' : 'translate-x-0'
                             } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
                         />
                         </button>
                         </div>
                     </div>
-                    {button && (
+                    {button.promotedListing && (
                         <div className='flex justify-between m-1'>
                             <div className='flex justify-center items-center'>Enter Ad Rate</div>
                             <div className='relative'>
@@ -154,20 +154,20 @@ const Options = () => {
                         <div className='flex justify-center items-center'>Sales Tax</div>
                         <div>
                         <button
-                        onClick={() => buttonSwitch("eBayStore")}
+                        onClick={() => buttonSwitch("salesTax")}
                         className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                            button ? 'bg-green-500' : 'bg-red-500'
+                            button.salesTax ? 'bg-green-500' : 'bg-red-500'
                         } text-white px-2 py-1 rounded-full`}
                         >
                         <span
                             className={`${
-                            button ? 'translate-x-full' : 'translate-x-0'
+                            button.salesTax ? 'translate-x-full' : 'translate-x-0'
                             } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
                         />
                         </button>
                         </div>
                     </div>
-                    {button && (
+                    {button.salesTax && (
                         <div className='flex flex-col'>
                             <div className='flex justify-between m-1'>
                                 <div className='flex justify-center items-center'>Apply Sales Tax On</div>
@@ -196,20 +196,20 @@ const Options = () => {
                         <div className='flex justify-center items-center'>Other Costs</div>
                         <div>
                         <button
-                        onClick={() => buttonSwitch("eBayStore")}
+                        onClick={() => buttonSwitch("otherCosts")}
                         className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                            button ? 'bg-green-500' : 'bg-red-500'
+                            button.otherCosts ? 'bg-green-500' : 'bg-red-500'
                         } text-white px-2 py-1 rounded-full`}
                         >
                         <span
                             className={`${
-                            button ? 'translate-x-full' : 'translate-x-0'
+                            button.otherCosts ? 'translate-x-full' : 'translate-x-0'
                             } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
                         />
                         </button>
                         </div>
                     </div>
-                    {button && (
+                    {button.otherCosts && (
                         <div className='flex justify-between mr-1 ml-1 mt-1 mb-3'>
                                 <input placeholder='Enter other costs in dollar' className="p-1 w-full rounded-md"/>
                         </div>
