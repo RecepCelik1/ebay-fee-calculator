@@ -6,6 +6,7 @@ import {
   } from 'chart.js';
   
   import { Doughnut } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
   
   ChartJS.register(
     ArcElement,
@@ -15,6 +16,17 @@ import {
 
 
 const Consequnces = () => {
+
+    const priceContents = useSelector(state => state.prices)
+    const optionsContents = useSelector(state => state.options)
+
+    let eBayStoreDropdownValue = 0
+
+    optionsContents.eBayStore === false ? eBayStoreDropdownValue = 0 : eBayStoreDropdownValue = optionsContents.ebayStoreDropdownOptions.value
+
+    let salesTaxValue = 0
+
+    optionsContents.salesTax === false ? salesTaxValue = 0 : salesTaxValue = optionsContents.salesTaxDropdownOptions.value
 
     const usData = {
         labels : [`Fees & Costs => ${80}` , `Total Profit => ${20}`],

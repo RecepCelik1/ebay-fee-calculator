@@ -1,22 +1,81 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import { toggleSwitchFunc } from '../redux/optionSlice';
+import { toggleSwitchFunc , optionsInputHandlingFunc , handleDropdownChangeFunc } from '../redux/optionSlice';
 
 const Options = () => {
+
     const dispatch = useDispatch()
 
     const button = useSelector(state => state.options)
-    
+    const dropdowns = useSelector(state => state.options)
+
     const buttonSwitch = (section) => {
         dispatch(toggleSwitchFunc(section))
     }
 
-    const countries = [
-        { value: 'US', label: 'United States', flag: '🇺🇸' },
-        { value: 'UK', label: 'United Kingdom', flag: 'UK' },
-      ];
+    const dropDownOptions = {
+        sellerStatusOptions : [
+            { value: '0', label: 'Top Rated Plus'},
+            { value: '1', label: 'Above Standard'},
+            { value: '2', label: 'Below Standard'},
+            { value: '3', label: 'Very High Item Not As Described'},
+        ],
+        
+        itemCategoryOptions : [
+            { value: '0', label: 'Other'},
+            { value: '01', label: 'Antiques'},
+            { value: '1', label: 'Art'},
+            { value: '2', label: 'Baby'},
+            { value: '3', label: 'Books & Magazine'},
+            { value: '4', label: 'Business & Industrial'},
+            { value: '5', label: 'Cameras & Photo'},
+            { value: '6', label: 'Cell Phones & Accessories'},
+            { value: '7', label: 'Clothing, Shoes & Accessories'},
+            { value: '8', label: 'Coins & Paper Money'},
+            { value: '9', label: 'Collectibles'},
+            { value: '10', label: 'Computers / Tablets & Networking'},
+            { value: '11', label: 'Consumer Electronics'},
+            { value: '12', label: 'Crafts'},
+            { value: '13', label: 'Dolls & Bears'},
+            { value: '14', label: 'DVDs, Movies & TV'},
+            { value: '15', label: 'eBay Motors'},
+            { value: '16', label: 'Entertainment Memorabilia'},
+            { value: '17', label: 'Gift Cards & Coupons'},
+            { value: '18', label: 'Health & Beauty'},
+            { value: '19', label: 'Home & Garden'},
+            { value: '20', label: 'Jewelry & Watches'},
+            { value: '21', label: 'Music'},
+            { value: '22', label: 'Musical Instruments & Gear'},
+            { value: '23', label: 'NFTs'},
+            { value: '24', label: 'Pet Supplies'},
+            { value: '25', label: 'Potter & Glass'},
+            { value: '26', label: 'Specialty Services'},
+            { value: '27', label: 'Sporting Goods'},
+            { value: '28', label: 'Sports Mem, Cards & Fan Shop'},
+            { value: '29', label: 'Stamps'},
+            { value: '30', label: 'Tickets & Experiences'},
+            { value: '31', label: 'Toys & Hobbies'},
+            { value: '32', label: 'Travel'},
+            { value: '33', label: 'Video Games & Consoles'},
+        ],
 
-      const customStyles = {
+        eBayStoreOptions : [
+            { value: '0', label: 'Starter Store'},
+            { value: '1', label: 'Basic Store'},
+            { value: '2', label: 'Premium Store'},
+            { value: '3', label: 'Anchor Store'},
+            { value: '4', label: 'Enterprise Store'},
+        ],
+
+        salesTaxOptions : [
+            { value: '0', label: 'Total Revenue'},
+            { value: '1', label: 'Only Item Price'},
+        ]
+
+    }
+
+
+      const customStyles = { //=> for dropdown menu customize
         option: (provided, state) => ({
           ...provided,
           borderBottom: '1px solid #ccc',   
@@ -39,7 +98,20 @@ const Options = () => {
       };
 
 
+      const handleOptionInputChange = (event , field) => {
 
+        const filteredValue = event.target.value.replace(/[^0-9,.]/g, "");
+        let parsedValue = parseFloat(filteredValue.replace(",", "."));
+    
+        if(isNaN(parsedValue)){
+          parsedValue = 0
+        }
+        
+        dispatch(optionsInputHandlingFunc({parsedValue , field}))
+
+      }
+
+      
 
     return (
         <div className="flex flex-col sm:flex-row justify-center bg-slate-300 m-2 rounded-md">
@@ -49,10 +121,11 @@ const Options = () => {
                     <div>
                         <Select
                             className=''
-                            options={countries}
+                            options={dropDownOptions.sellerStatusOptions}
                             styles={customStyles}
-                            placeholder="Above Standarts"
                             isSearchable
+                            onChange={(selectedOption) => dispatch(handleDropdownChangeFunc({selectedOption , field : "sellerStatus"}))}
+                            value={dropdowns.sellerStatusDropdownOptions}
                         />
                     </div>
                 </div>
@@ -61,10 +134,11 @@ const Options = () => {
                     <div>
                         <Select
                             className=''
-                            options={countries}
+                            options={dropDownOptions.itemCategoryOptions}
                             styles={customStyles}
-                            placeholder="Above Standarts"
                             isSearchable
+                            onChange={(selectedOption) => dispatch(handleDropdownChangeFunc({selectedOption , field : "itemCategory"}))}
+                            value={dropdowns.itemCategoryDropdonwOptions}
                         />
                     </div>
                 </div>
@@ -95,10 +169,11 @@ const Options = () => {
                         <div className='m-1'>
                             <Select
                                 className=''
-                                options={countries}
+                                options={dropDownOptions.eBayStoreOptions}
                                 styles={customStyles}
-                                placeholder="Above Standarts"
                                 isSearchable
+                                onChange={(selectedOption) => dispatch(handleDropdownChangeFunc({selectedOption , field : "eBayStore"}))}
+                                value={dropdowns.ebayStoreDropdownOptions}
                             />
                         </div>
                     )}
@@ -143,7 +218,9 @@ const Options = () => {
                         <div className='flex justify-between m-1'>
                             <div className='flex justify-center items-center'>Enter Ad Rate</div>
                             <div className='relative'>
-                                <input className="p-1 w-24 rounded-md"/>
+                                <input className="p-1 w-24 rounded-md"
+                                        onChange={(e) => handleOptionInputChange(e , "promotedListingAdRate")}
+                                />
                                 <span className='absolute top-1 right-2'>%</span>
                             </div>
                         </div>
@@ -174,17 +251,20 @@ const Options = () => {
                                 <div>
                                     <Select
                                         className=''
-                                        options={countries}
+                                        options={dropDownOptions.salesTaxOptions}
                                         styles={customStyles}
-                                        placeholder="Above Standarts"
                                         isSearchable
+                                        onChange={(selectedOption) => dispatch(handleDropdownChangeFunc({selectedOption , field : "salesTax"}))}
+                                        value={dropdowns.salesTaxDropdownOptions}
                                     />
                                 </div>
                             </div>
                             <div className='flex justify-between m-1'>
                                 <div className='flex justify-center items-center'>Enter Sales Tax Rate</div>
                                 <div className='relative'>
-                                    <input className="p-1 w-24 rounded-md"/>
+                                    <input className="p-1 w-24 rounded-md"
+                                            onChange={(e) => handleOptionInputChange(e, "salesTaxRate")}
+                                    />
                                     <span className='absolute top-1 right-2'>%</span>
                                 </div>
                             </div>
@@ -211,7 +291,9 @@ const Options = () => {
                     </div>
                     {button.otherCosts && (
                         <div className='flex justify-between mr-1 ml-1 mt-1 mb-3'>
-                                <input placeholder='Enter other costs in dollar' className="p-1 w-full rounded-md"/>
+                                <input placeholder='Enter other costs in dollar' className="p-1 w-full rounded-md"
+                                        onChange={(e) => handleOptionInputChange(e , "otherCostAmount")}
+                                />
                         </div>
                     )}
                 </div>
