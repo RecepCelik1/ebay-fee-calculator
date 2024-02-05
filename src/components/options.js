@@ -14,6 +14,7 @@ const Options = () => {
     }
 
     const dropDownOptions = {
+
         sellerStatusOptions : [
             { value: '0', label: 'Top Rated Plus'},
             { value: '1', label: 'Above Standard'},
@@ -21,44 +22,6 @@ const Options = () => {
             { value: '3', label: 'Very High Item Not As Described'},
         ],
         
-        itemCategoryOptions : [
-            { value: '0', label: 'Other'},
-            { value: '01', label: 'Antiques'},
-            { value: '1', label: 'Art'},
-            { value: '2', label: 'Baby'},
-            { value: '3', label: 'Books & Magazine'},
-            { value: '4', label: 'Business & Industrial'},
-            { value: '5', label: 'Cameras & Photo'},
-            { value: '6', label: 'Cell Phones & Accessories'},
-            { value: '7', label: 'Clothing, Shoes & Accessories'},
-            { value: '8', label: 'Coins & Paper Money'},
-            { value: '9', label: 'Collectibles'},
-            { value: '10', label: 'Computers / Tablets & Networking'},
-            { value: '11', label: 'Consumer Electronics'},
-            { value: '12', label: 'Crafts'},
-            { value: '13', label: 'Dolls & Bears'},
-            { value: '14', label: 'DVDs, Movies & TV'},
-            { value: '15', label: 'eBay Motors'},
-            { value: '16', label: 'Entertainment Memorabilia'},
-            { value: '17', label: 'Gift Cards & Coupons'},
-            { value: '18', label: 'Health & Beauty'},
-            { value: '19', label: 'Home & Garden'},
-            { value: '20', label: 'Jewelry & Watches'},
-            { value: '21', label: 'Music'},
-            { value: '22', label: 'Musical Instruments & Gear'},
-            { value: '23', label: 'NFTs'},
-            { value: '24', label: 'Pet Supplies'},
-            { value: '25', label: 'Potter & Glass'},
-            { value: '26', label: 'Specialty Services'},
-            { value: '27', label: 'Sporting Goods'},
-            { value: '28', label: 'Sports Mem, Cards & Fan Shop'},
-            { value: '29', label: 'Stamps'},
-            { value: '30', label: 'Tickets & Experiences'},
-            { value: '31', label: 'Toys & Hobbies'},
-            { value: '32', label: 'Travel'},
-            { value: '33', label: 'Video Games & Consoles'},
-        ],
-
         eBayStoreOptions : [
             { value: '0', label: 'Starter Store'},
             { value: '1', label: 'Basic Store'},
@@ -70,10 +33,156 @@ const Options = () => {
         salesTaxOptions : [
             { value: '0', label: 'Total Revenue'},
             { value: '1', label: 'Only Item Price'},
-        ]
+        ],
+
+        coinsAndPaperMoneyCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Bullion'},
+        ],
+
+        clothingShoesAndAccessoriesCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Athletic Shoes'},
+            { value: '2', label: "Women's Bags & Handbags"},
+        ],
+
+        jewelleryAndWatchesCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Watches, Parts & Accessories'},
+        ],
+
+        businessAndIndustrialCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Heavy Equipment'},
+            { value: '2', label: 'Commercial Printing Presses'},
+            { value: '3', label: 'Food Trucks, Trailers & Carts'},
+        ],
+
+        musicalInstrumentsAndGearCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'DJ Equipment'},
+            { value: '2', label: 'Pro Audio Equipment'},
+            { value: '3', label: 'Guitars & Basses'},
+        ],
+
+        camerasAndPhotoCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Camera, Drone & Photo Accessories (except Memory Cards)'},
+            { value: '2', label: 'Replacement Parts & Tools'},
+            { value: '3', label: 'Tripods & Supports'},
+            { value: '4', label: 'Other Cameras & Photo'},
+        ],
+
+        cellPhonesAndAccessoriesCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Cell Phones Accessories (except Memory Cards)'},
+        ],
+
+        computersTabletsAndNetworkingCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Desktops & All-In-Ones'},
+            { value: '2', label: 'Tablets & eBook Readers'},
+            { value: '3', label: 'Computer Components & Parts'},
+            { value: '4', label: 'Hard Drives (HDD, SSD & NAS)'},
+            { value: '5', label: 'Monitors'},
+            { value: '6', label: 'Printers'},
+            { value: '7', label: '3D Printers & Supplies'},
+            { value: '8', label: 'Computer Cables & Connectors'},
+            { value: '9', label: 'Keywords , Mice & Pointers'},
+            { value: '10', label: 'Laptop & Desktop Accessories'},
+            { value: '11', label: 'Other Computers & Networking'},
+            { value: '12', label: 'Power Protection, Distribution'},
+            { value: '13', label: 'Tablet & eBook Reader Accs (except Memory Card & USB Adapters)'},
+        ],
+
+        consumerElectronicsCategory : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Multipurpose Batteries & Power'},
+            { value: '2', label: 'Portable Audio Accessories'},
+            { value: '3', label: 'TV, Video & Home Audio'},
+            { value: '4', label: 'Vehicle Electronics & GPS'},
+            { value: '5', label: 'Virtual Reality'},
+        ],
+
+        eBayMotorsCategory : [
+            { value: '0', label: 'Automotive Tools & Supplies'},
+            { value: '1', label: 'Parts & Accessories'},
+            { value: '2', label: 'Safety & Security Accessories'},
+            { value: '3', label: 'Tires'},
+            { value: '4', label: 'Apparel, Protective Gear & Merchandise'},
+            { value: '5', label: 'In-Car Technology, GPS & Security'},
+        ],
+
+        musicCategories : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Vinyl Records'},
+        ],
+
+        videoGamesAndConsoles : [
+            { value: '0', label: 'Other'},
+            { value: '1', label: 'Video Game Accessories'},
+            { value: '2', label: 'Replacement Parts & Tools'},
+            { value: '3', label: 'Video Games'},
+            { value: '4', label: 'Video Game Consoles'},
+        ],
+
+        itemCategoryOptions : [
+            { value: '0', label: 'Other'},
+            { value: '01', label: 'Antiques'},
+            { value: '1', label: 'Art'},
+            { value: '2', label: 'Baby'},
+            { value: '3', label: 'Books & Magazine'},
+
+            { value: '4', label: 'Business & Industrial' , includeSubCategory : true, subCategory : "businessAndIndustrialCategory", subField : ""},
+
+            { value: '5', label: 'Cameras & Photo', includeSubCategory : true, subCategory : "camerasAndPhotoCategory"},
+
+            { value: '6', label: 'Cell Phones & Accessories', includeSubCategory : true, subCategory : "cellPhonesAndAccessoriesCategory"},
+
+            { value: '7', label: 'Clothing, Shoes & Accessories' , includeSubCategory : true, subCategory : "clothingShoesAndAccessoriesCategory"},
+
+            { value: '8', label: 'Coins & Paper Money' , includeSubCategory : true, subCategory : "coinsAndPaperMoneyCategory"},
+
+            { value: '9', label: 'Collectibles'},
+
+            { value: '10', label: 'Computers / Tablets & Networking', includeSubCategory : true, subCategory : "computersTabletsAndNetworkingCategory"},
+
+            { value: '11', label: 'Consumer Electronics', includeSubCategory : true, subCategory : "consumerElectronicsCategory"},
+
+            { value: '12', label: 'Crafts'},
+            { value: '13', label: 'Dolls & Bears'},
+            { value: '14', label: 'DVDs, Movies & TV'},
+
+            { value: '15', label: 'eBay Motors', includeSubCategory : true, subCategory : "eBayMotorsCategory"},
+
+            { value: '16', label: 'Entertainment Memorabilia'},
+            { value: '17', label: 'Gift Cards & Coupons'},
+            { value: '18', label: 'Health & Beauty'},
+            { value: '19', label: 'Home & Garden'},
+
+            { value: '20', label: 'Jewelry & Watches', includeSubCategory : true, subCategory : "jewelleryAndWatchesCategory"},
+
+            { value: '21', label: 'Music', includeSubCategory : true, subCategory : "musicCategories"},
+
+            { value: '22', label: 'Musical Instruments & Gear', includeSubCategory : true, subCategory : "musicalInstrumentsAndGearCategory"},
+
+            { value: '23', label: 'NFTs'},
+            { value: '24', label: 'Pet Supplies'},
+            { value: '25', label: 'Potter & Glass'},
+            { value: '26', label: 'Specialty Services'},
+            { value: '27', label: 'Sporting Goods'},
+            { value: '28', label: 'Sports Mem, Cards & Fan Shop'},
+            { value: '29', label: 'Stamps'},
+            { value: '30', label: 'Tickets & Experiences'},
+            { value: '31', label: 'Toys & Hobbies'},
+            { value: '32', label: 'Travel'},
+
+            { value: '33', label: 'Video Games & Consoles', includeSubCategory : true, subCategory : "videoGamesAndConsoles"},
+        ],
 
     }
 
+        console.log(dropdowns.itemCategoryDropdonwOptions)
 
       const customStyles = { //=> for dropdown menu customize
         option: (provided, state) => ({
@@ -115,6 +224,9 @@ const Options = () => {
     return (
         <div className="flex flex-col sm:flex-row justify-center bg-gray-200 m-2 rounded-md">
             <div className='flex flex-col w-full sm:w-[50%]'>
+
+
+
                 <div className='flex justify-between m-1'>
                     <div className='flex justify-center items-center'>Seller Status</div>
                     <div>
@@ -141,6 +253,21 @@ const Options = () => {
                         />
                     </div>
                 </div>
+
+                {dropdowns.itemCategoryDropdonwOptions?.includeSubCategory && (
+                <div className='flex flex-col m-1'>
+                    <div className='mb-1'>Item Sub Category</div>
+                        <div>
+                            <Select
+                                className=''
+                                options={dropDownOptions[dropdowns.itemCategoryDropdonwOptions.subCategory]}
+                                styles={customStyles}
+                                isSearchable
+                            />
+                        </div>
+                </div>
+                )}
+
             </div>
             <div className=' border-gray-400 border m-2'></div>
 
