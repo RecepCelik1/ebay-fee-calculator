@@ -87,7 +87,6 @@ const Options = () => {
           ...provided,
           width: '100%',
           height: '24px',
-          border: '1px solid black',
           borderRadius: '5px',
           display: 'flex',
           justifyContent: 'space-between',
@@ -114,7 +113,7 @@ const Options = () => {
       
 
     return (
-        <div className="flex flex-col sm:flex-row justify-center bg-slate-300 m-2 rounded-md">
+        <div className="flex flex-col sm:flex-row justify-center bg-gray-200 m-2 rounded-md">
             <div className='flex flex-col w-full sm:w-[50%]'>
                 <div className='flex justify-between m-1'>
                     <div className='flex justify-center items-center'>Seller Status</div>
@@ -143,7 +142,7 @@ const Options = () => {
                     </div>
                 </div>
             </div>
-            <div className=' border-slate-500 border m-2'></div>
+            <div className=' border-gray-400 border m-2'></div>
 
             <div className='flex flex-col w-full sm:w-[50%]'>
 
@@ -154,13 +153,13 @@ const Options = () => {
                         <button
                         onClick={() => buttonSwitch("eBayStore")}
                         className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                            button.eBayStore ? 'bg-green-500' : 'bg-red-500'
-                        } text-white px-2 py-1 rounded-full`}
+                            button.eBayStore ? 'bg-sky-600' : 'bg-gray-400'
+                        } text-white px-1 py-1 rounded-full`}
                         >
                         <span
                             className={`${
                             button.eBayStore ? 'translate-x-full' : 'translate-x-0'
-                            } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
+                            } inline-block w-5 h-5 bg-white rounded-full transform transition-transform`}
                         />
                         </button>
                         </div>
@@ -185,13 +184,13 @@ const Options = () => {
                     <button
                       onClick={() => buttonSwitch("internationalSale")}
                       className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                        button.internationalSale ? 'bg-green-500' : 'bg-red-500'
-                      } text-white px-2 py-1 rounded-full`}
+                        button.internationalSale ? 'bg-sky-600' : 'bg-gray-400'
+                    } text-white px-1 py-1 rounded-full`}
                     >
                       <span
                         className={`${
                           button.internationalSale ? 'translate-x-full' : 'translate-x-0'
-                        } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
+                        } inline-block w-5 h-5 bg-white rounded-full transform transition-transform`}
                       />
                     </button>
                     </div>
@@ -203,13 +202,13 @@ const Options = () => {
                         <button
                         onClick={() => buttonSwitch("promotedListing")}
                         className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                            button.promotedListing ? 'bg-green-500' : 'bg-red-500'
-                        } text-white px-2 py-1 rounded-full`}
+                            button.promotedListing ? 'bg-sky-600' : 'bg-gray-400'
+                        } text-white px-1 py-1 rounded-full`}
                         >
                         <span
                             className={`${
                             button.promotedListing ? 'translate-x-full' : 'translate-x-0'
-                            } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
+                            } inline-block w-5 h-5 bg-white rounded-full transform transition-transform`}
                         />
                         </button>
                         </div>
@@ -233,13 +232,13 @@ const Options = () => {
                         <button
                         onClick={() => buttonSwitch("salesTax")}
                         className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                            button.salesTax ? 'bg-green-500' : 'bg-red-500'
-                        } text-white px-2 py-1 rounded-full`}
+                            button.salesTax ? 'bg-sky-600' : 'bg-gray-400'
+                        } text-white px-1 py-1 rounded-full`}
                         >
                         <span
                             className={`${
                             button.salesTax ? 'translate-x-full' : 'translate-x-0'
-                            } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
+                            } inline-block w-5 h-5 bg-white rounded-full transform transition-transform`}
                         />
                         </button>
                         </div>
@@ -278,13 +277,13 @@ const Options = () => {
                         <button
                         onClick={() => buttonSwitch("otherCosts")}
                         className={`relative inline-flex items-center cursor-pointer focus:outline-none w-12 ${
-                            button.otherCosts ? 'bg-green-500' : 'bg-red-500'
-                        } text-white px-2 py-1 rounded-full`}
+                            button.otherCosts ? 'bg-sky-600' : 'bg-gray-400'
+                        } text-white px-1 py-1 rounded-full`}
                         >
                         <span
                             className={`${
                             button.otherCosts ? 'translate-x-full' : 'translate-x-0'
-                            } inline-block w-4 h-4 mt-1 mb-1 bg-white rounded-full transform transition-transform`}
+                            } inline-block w-5 h-5 bg-white rounded-full transform transition-transform`}
                         />
                         </button>
                         </div>

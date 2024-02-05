@@ -45,12 +45,12 @@ const Consequnces = () => {
     return (
         <div className="flex flex-col justify-center m-2">
 
-            <div className="flex justify-between bg-slate-300 rounded-md mb-6">
+            <div className="flex justify-between bg-gray-200 rounded-md mb-6">
                 <div className="flex justify-center items-center mt-2 mb-2 ml-4">Total Profit Per Item</div>
                 <div className="flex justify-center items-center mt-2 mb-2 mr-2">-$0.30</div>
             </div>
 
-            <div className='flex flex-col w-full bg-slate-300 rounded-md sm:flex-row'>
+            <div className='flex flex-col w-full bg-gray-200 rounded-md sm:flex-row'>
 
                 <div className="w-full sm:w-7/12 flex flex-col">
 
@@ -69,7 +69,7 @@ const Consequnces = () => {
                         <div className="flex justify-center items-center font-bold mr-2">$ 0.00</div>
                     </div>
 
-                    <div className='border-slate-500 border m-2'></div>
+                    <div className='border-gray-400 border m-2'></div>
                     
                     <div className="flex justify-between m-2">
                         <div className="flex justify-center items-center font-bold">Total Fees</div>
@@ -88,7 +88,7 @@ const Consequnces = () => {
 
                 <div className="w-full sm:w-5/12 flex justify-center items-center mb-2 mt-2">
                     <Doughnut
-                        data={usData  }
+                        data={usData}
                         options={options}
                     ></Doughnut>
                 </div>
@@ -97,7 +97,7 @@ const Consequnces = () => {
 
             <div className='text-white flex justify-center items-center mb-2 mt-2'>Detailed Breakdown</div>
 
-            <div className='flex flex-col w-full bg-slate-300 rounded-md sm:flex-row'>
+            <div className='flex flex-col w-full bg-gray-200 rounded-md sm:flex-row'>
                 
                 <div className="w-full sm:w-7/12 flex flex-col mt-2">
 
@@ -106,7 +106,7 @@ const Consequnces = () => {
                         <div className="flex justify-center items-center mr-2">$ 0.00</div>
                     </div>
 
-                    <div className='border-slate-500 border m-2'></div>
+                    <div className='border-gray-400 border m-2'></div>
 
                     <div className="flex justify-between m-2">
                         <div className="ml-2">Total Fees</div>
@@ -118,7 +118,7 @@ const Consequnces = () => {
                         <div className="flex justify-center items-center mr-2">$ 0.00</div>
                     </div>
 
-                    <div className='border-slate-500 border m-2'></div>
+                    <div className='border-gray-400 border m-2'></div>
 
                     <div className="flex justify-between m-2">
                         <div className="ml-2">Total Profit</div>
