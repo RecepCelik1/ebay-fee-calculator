@@ -30,7 +30,7 @@ function App() {
   <div className="flex flex-col sm:flex-row justify-center">
             <div className='flex flex-col w-full sm:w-[50%]'>
 
-              <div className="bg-gray-200 rounded-md m-2">
+              <div className="bg-gray-200 rounded-md m-2 p-2">
                 <div className="flex justify-between m-2">
                   <div>Item Sold Price</div>
                   <div>
@@ -54,7 +54,7 @@ function App() {
             </div>
 
             <div className='flex flex-col w-full sm:w-[50%]'>
-              <div className="bg-gray-200 rounded-md m-2">
+              <div className="bg-gray-200 rounded-md m-2 p-2">
 
                 <div className="flex justify-between m-2">
                   <div>Shipping Charge</div>
