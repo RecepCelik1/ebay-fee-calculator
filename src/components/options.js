@@ -18,8 +18,8 @@ const Options = () => {
         sellerStatusOptions : [
             { value: -10, label: 'Top Rated Plus'},
             { value: 0, label: 'Above Standard'},
-            { value: -6, label: 'Below Standard'},
-            { value: -5, label: 'Very High Item Not As Described'},
+            { value: 6, label: 'Below Standard'},
+            { value: 5, label: 'Very High Item Not As Described'},
         ],
         
         eBayStoreOptions : [
@@ -182,19 +182,19 @@ const Options = () => {
 
             { value: "0", label: 'Business & Industrial' , includeSubCategory : true, subCategory : "businessAndIndustrialCategory"},//
 
-            { value: "0", label: 'Cameras & Photo', includeSubCategory : true, subCategory : "camerasAndPhotoCategory"},//
+            { value: "1", label: 'Cameras & Photo', includeSubCategory : true, subCategory : "camerasAndPhotoCategory"},//
 
-            { value: "0", label: 'Cell Phones & Accessories', includeSubCategory : true, subCategory : "cellPhonesAndAccessoriesCategory"},//
+            { value: "2", label: 'Cell Phones & Accessories', includeSubCategory : true, subCategory : "cellPhonesAndAccessoriesCategory"},//
 
-            { value: "0", label: 'Clothing, Shoes & Accessories' , includeSubCategory : true, subCategory : "clothingShoesAndAccessoriesCategory"},//
+            { value: "3", label: 'Clothing, Shoes & Accessories' , includeSubCategory : true, subCategory : "clothingShoesAndAccessoriesCategory"},//
 
-            { value: "0", label: 'Coins & Paper Money' , includeSubCategory : true, subCategory : "coinsAndPaperMoneyCategory"},//
+            { value: "4", label: 'Coins & Paper Money' , includeSubCategory : true, subCategory : "coinsAndPaperMoneyCategory"},//
 
             { value: {table1 : {mainFeeRate : 13.25, peak : 7500 , reducedFeeRate : 2.35, insertionFee : 0}, table2 : {mainFeeRate : 12.35, peak : 2500, reducedFeeRate: 2.35}}, label: 'Collectibles'},//
 
-            { value: "0", label: 'Computers / Tablets & Networking', includeSubCategory : true, subCategory : "computersTabletsAndNetworkingCategory"},//
+            { value: "5", label: 'Computers / Tablets & Networking', includeSubCategory : true, subCategory : "computersTabletsAndNetworkingCategory"},//
 
-            { value: "0", label: 'Consumer Electronics', includeSubCategory : true, subCategory : "consumerElectronicsCategory"},//
+            { value: "6", label: 'Consumer Electronics', includeSubCategory : true, subCategory : "consumerElectronicsCategory"},//
 
             { value: {table1 : {mainFeeRate : 13.25, peak : 7500 , reducedFeeRate : 2.35, insertionFee : 0}, table2 : {mainFeeRate : 12.35, peak : 2500, reducedFeeRate: 2.35}}, label: 'Crafts'},//
 
@@ -202,7 +202,7 @@ const Options = () => {
 
             { value: {table1 : {mainFeeRate : 14.95, peak : 7500 , reducedFeeRate : 2.35, insertionFee : 0}, table2 : {mainFeeRate : 14.95, peak : 2500, reducedFeeRate: 2.35}}, label: 'DVDs, Movies & TV'},//
 
-            { value: "0", label: 'eBay Motors', includeSubCategory : true, subCategory : "eBayMotorsCategory"},//
+            { value: "7", label: 'eBay Motors', includeSubCategory : true, subCategory : "eBayMotorsCategory"},//
 
             { value: {table1 : {mainFeeRate : 13.25, peak : 7500 , reducedFeeRate : 2.35, insertionFee : 0}, table2 : {mainFeeRate : 12.35, peak : 2500, reducedFeeRate: 2.35}}, label: 'Entertainment Memorabilia'},//
             
@@ -212,11 +212,11 @@ const Options = () => {
 
             { value: {table1 : {mainFeeRate : 13.25, peak : 7500 , reducedFeeRate : 2.35, insertionFee : 0}, table2 : {mainFeeRate : 12.35, peak : 2500, reducedFeeRate: 2.35}}, label: 'Home & Garden'},//
 
-            { value: "0", label: 'Jewelry & Watches', includeSubCategory : true, subCategory : "jewelleryAndWatchesCategory"},//
+            { value: "8", label: 'Jewelry & Watches', includeSubCategory : true, subCategory : "jewelleryAndWatchesCategory"},//
 
-            { value: "0", label: 'Music', includeSubCategory : true, subCategory : "musicCategories"},//
+            { value: "9", label: 'Music', includeSubCategory : true, subCategory : "musicCategories"},//
 
-            { value: "0", label: 'Musical Instruments & Gear', includeSubCategory : true, subCategory : "musicalInstrumentsAndGearCategory"},//
+            { value: "10", label: 'Musical Instruments & Gear', includeSubCategory : true, subCategory : "musicalInstrumentsAndGearCategory"},//
 
             { value: {table1 : {mainFeeRate : 5, insertionFee : 0} ,table2 : {mainFeeRate : 5}}, label: 'NFTs'},//
 
@@ -238,7 +238,7 @@ const Options = () => {
 
             { value: {table1 : {mainFeeRate : 13.25, peak : 7500 , reducedFeeRate : 2.35, insertionFee : 0}, table2 : {mainFeeRate : 12.35, peak : 2500, reducedFeeRate: 2.35}}, label: 'Travel'},//
 
-            { value: "0", label: 'Video Games & Consoles', includeSubCategory : true, subCategory : "videoGamesAndConsoles"},//
+            { value: "11", label: 'Video Games & Consoles', includeSubCategory : true, subCategory : "videoGamesAndConsoles"},//
         ],
 
     }
