@@ -6,14 +6,16 @@ import {
   } from 'chart.js';
   
   import { Doughnut } from 'react-chartjs-2';
+
 import { useSelector } from 'react-redux';
-  
+
+import CountryFlag from 'react-country-flag';  
+
   ChartJS.register(
     ArcElement,
     Tooltip,
     Legend
   );
-
 
 const Consequnces = () => {
 
@@ -34,20 +36,39 @@ const Consequnces = () => {
     let otherCosts;
     optionsContents.otherCosts === false ? otherCosts = 0 : otherCosts = optionsContents.otherCostAmount
 
+    let doublePeak = false;
+    let peak ;
+    let peak1 ;
+    let peak2 ;
+    let mainFeeRate ;
+    let reducedFeeRate ;
+    let reducedFeeRate1 ;
+    let reducedFeeRate2 ;
     //for the final value fee
 
     let theFinalValueFee = 0
     let feeRate ;
     let constantFinalValueFee = 0.30
-    //table1 
 
+    //table1 
     if(optionsContents.eBayStore === false || optionsContents.ebayStoreDropdownOptions.value === 0){
 
  
-
         if(optionsContents.itemCategoryDropdonwOptions?.includeSubCategory === true) {
 
             if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1?.doublePeak === true){
+
+                doublePeak = true;
+                mainFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.mainFeeRate
+
+                reducedFeeRate1 = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.reducedFeeRate1
+                
+                reducedFeeRate2 = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.reducedFeeRate2
+
+                peak1 = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.peak1
+
+                peak2 = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.peak2
+
                 if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.peak1 >= itemMarketSoldPrice){
 
                     feeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.mainFeeRate
@@ -62,12 +83,31 @@ const Consequnces = () => {
 
                 }
 
+
             } else if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.peak >= itemMarketSoldPrice){
+                
+                doublePeak = false
+
+                mainFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.mainFeeRate
+
+                reducedFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.reducedFeeRate
+
+                peak = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.peak
 
                 feeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.mainFeeRate
 
             } else {
+                
+                doublePeak = false
+
+                mainFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.mainFeeRate
+
+                reducedFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.reducedFeeRate
+
+                peak = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.peak
+
                 feeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.reducedFeeRate
+
             }
 
             theFinalValueFee = (itemMarketSoldPrice * feeRate)/100 + constantFinalValueFee + optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.insertionFee
@@ -75,10 +115,34 @@ const Consequnces = () => {
         } else {
 
             if(optionsContents.itemCategoryDropdonwOptions.value.table1.peak >= itemMarketSoldPrice){
+
+                doublePeak = false
+
+                mainFeeRate = optionsContents.itemCategoryDropdonwOptions.value.table1.mainFeeRate
+
+                peak = optionsContents.itemCategoryDropdonwOptions.value.table1.peak
+
+                reducedFeeRate = optionsContents.itemCategoryDropdonwOptions.value.table1.reducedFeeRate
+
                 feeRate = optionsContents.itemCategoryDropdonwOptions.value.table1.mainFeeRate
             } else {
+
+                doublePeak = false
+
+                mainFeeRate = optionsContents.itemCategoryDropdonwOptions.value.table1.mainFeeRate
+
+                peak = optionsContents.itemCategoryDropdonwOptions.value.table1.peak
+
+                reducedFeeRate = optionsContents.itemCategoryDropdonwOptions.value.table1.reducedFeeRate
+
                 feeRate = optionsContents.itemCategoryDropdonwOptions.value.table1.reducedFeeRate
             }
+
+
+            if(optionsContents.itemCategoryDropdonwOptions.label === "NFTs"){
+            feeRate = optionsContents.itemCategoryDropdonwOptions.value.table1.mainFeeRate
+            }
+
 
             theFinalValueFee = (itemMarketSoldPrice * feeRate)/100 + constantFinalValueFee + optionsContents.itemCategoryDropdonwOptions.value.table1.insertionFee
 
@@ -92,12 +156,24 @@ const Consequnces = () => {
 
     //table2
 
-    if(optionsContents.eBayStore === true && optionsContents.ebayStoreDropdownOptions.value === 1){
+    if(optionsContents.eBayStore === true && optionsContents.ebayStoreDropdownOptions.value > 0){
 
 
         if(optionsContents.itemCategoryDropdonwOptions?.includeSubCategory === true) {
 
             if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2?.doublePeak === true){
+
+                doublePeak = true;
+                mainFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.mainFeeRate
+
+                reducedFeeRate1 = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.reducedFeeRate1
+                
+                reducedFeeRate2 = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.reducedFeeRate2
+
+                peak1 = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.peak1
+
+                peak2 = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.peak2
+
                 if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.peak1 >= itemMarketSoldPrice){
 
                     feeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.mainFeeRate
@@ -112,32 +188,74 @@ const Consequnces = () => {
 
                 }
 
+
             } else if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.peak >= itemMarketSoldPrice){
+
+
+                doublePeak = false
+
+                mainFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.mainFeeRate
+
+                reducedFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.reducedFeeRate
+
+                peak = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.peak
+
 
                 feeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.mainFeeRate
 
             } else {
+
+                doublePeak = false
+
+                mainFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.mainFeeRate
+
+                reducedFeeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.reducedFeeRate
+
+                peak = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.peak
+
                 feeRate = optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table2.reducedFeeRate
             }
 
         } else {
 
             if(optionsContents.itemCategoryDropdonwOptions.value.table2.peak >= itemMarketSoldPrice){
+
+                doublePeak = false
+
+                mainFeeRate = optionsContents.itemCategoryDropdonwOptions.value.table2.mainFeeRate
+
+                peak = optionsContents.itemCategoryDropdonwOptions.value.table2.peak
+
+                reducedFeeRate = optionsContents.itemCategoryDropdonwOptions.value.table2.reducedFeeRate
+
                 feeRate = optionsContents.itemCategoryDropdonwOptions.value.table2.mainFeeRate
             } else {
+
+                doublePeak = false
+
+                mainFeeRate = optionsContents.itemCategoryDropdonwOptions.value.table2.mainFeeRate
+
+                peak = optionsContents.itemCategoryDropdonwOptions.value.table2.peak
+
+                reducedFeeRate = optionsContents.itemCategoryDropdonwOptions.value.table2.reducedFeeRate
+
                 feeRate = optionsContents.itemCategoryDropdonwOptions.value.table2.reducedFeeRate
             }
 
         }
 
+        if(optionsContents.itemCategoryDropdonwOptions.label === "NFTs"){
+            feeRate = optionsContents.itemCategoryDropdonwOptions.value.table2.mainFeeRate
+        }
+
         theFinalValueFee = (itemMarketSoldPrice * feeRate)/100 + constantFinalValueFee
 
         if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions?.subCategory]?.label === "Athletic Shoes" && itemMarketSoldPrice > 150){
-            theFinalValueFee = theFinalValueFee - constantFinalValueFee
+            theFinalValueFee = theFinalValueFee - constantFinalValueFee 
         }
 
     }
-
+    
     console.log("fee rate : ", feeRate)
     //for sales tax
     let salesTaxCost;
@@ -149,7 +267,7 @@ const Consequnces = () => {
     }
      
     console.log("sales tax rate : ", salesTaxValue , "sales tax cost : ", salesTaxCost)
-
+    
     //for promoted listing
 
     let absolutePromotedListingAdRate ;
@@ -183,28 +301,14 @@ const Consequnces = () => {
     //
     console.log("the final value fee : " , theFinalValueFee)
 
-    const usData = {
-        labels : [`Fees & Costs => ${80}` , `Total Profit => ${20}`],
-        datasets : [{
-          label : '',
-          data : [ 100-20 , 80 ],
-          backgroundColor : ['blue' , 'green'],
-          borderColor : ['blue' , 'green'],
-        }]
-      }
-
-      const options = {
-
-      }
-
       let sellertatusDifference;
 
       if(optionsContents.sellerStatusDropdownOptions.value === -10){
 
-        sellertatusDifference = (salesTaxCost + theFinalValueFee)*optionsContents.sellerStatusDropdownOptions.value
+        sellertatusDifference = (salesTaxCost + theFinalValueFee)*optionsContents.sellerStatusDropdownOptions.value/100
 
       } else {
-        sellertatusDifference = itemMarketSoldPrice*optionsContents.sellerStatusDropdownOptions.value
+        sellertatusDifference = itemMarketSoldPrice*optionsContents.sellerStatusDropdownOptions.value/100
       }
 
       let totalFees = sellertatusDifference + theFinalValueFee + internationalSaleDifference + promotedListingCost + salesTaxCost
@@ -222,6 +326,7 @@ const Consequnces = () => {
         textColor = "text-red-600"
       }
 
+      console.log("seller status difference : ", sellertatusDifference)
 
      function calculatePercentage(numerator, denominator) {
         // Kontrol ekleniyor
@@ -238,6 +343,34 @@ const Consequnces = () => {
     let averageFeeRate = calculatePercentage(totalFees, itemMarketSoldPrice);
     
 
+    let profitPercentage;
+    profitPercentage = (totalProfitPerItem / itemMarketSoldPrice)*100
+
+    if(profitPercentage < 0){
+        profitPercentage = 0
+    }
+
+    profitPercentage = parseFloat(profitPercentage.toFixed(2))
+
+    const usData = {
+        labels: [`Fees & Costs = ${parseFloat((100-profitPercentage).toFixed(2))} %` , `Total Profit = ${parseFloat(profitPercentage.toFixed(2))} %`],
+        datasets: [
+          {
+            data: [100-profitPercentage , profitPercentage],
+            backgroundColor: [
+              "rgb(2, 132, 199)",
+              "rgb(13, 148, 136)",
+            ],
+            hoverOffset: 4,
+          },
+        ],
+      }
+
+      const options = {
+        cutout : 90,
+        radius : "70%",
+        borderWidth : 0
+      }
 
 
     return (
@@ -277,7 +410,7 @@ const Consequnces = () => {
 
                     <div className="flex justify-between m-2">
                         <div className="">Average Fee Rate<p className="text-gray-600">Total Fees / Total Revenue</p></div>
-                        <div className="flex justify-center items-center mr-2">% {parseFloat(averageFeeRate.toFixed(2))}</div>
+                        <div className="flex justify-center items-center mr-2">{parseFloat(averageFeeRate.toFixed(2))} %</div>
                     </div>
 
                     <div className="flex justify-center items-center w-full">
@@ -285,11 +418,14 @@ const Consequnces = () => {
                     </div>
                 </div>
 
-                <div className="w-full sm:w-5/12 flex justify-center items-center mb-2 mt-2">
+                <div className="w-full sm:w-5/12 flex justify-center items-center mb-2 mt-2 relative">
                     <Doughnut
                         data={usData}
                         options={options}
                     ></Doughnut>
+
+                    <CountryFlag className='absolute bottom-5 right-5' countryCode="US" svg style={{ width: '50px', height: '30px' }} />
+
                 </div>
 
             </div>
@@ -331,9 +467,37 @@ const Consequnces = () => {
                     <div className='flex flex-col'>
                         <div className='font-bold flex justify-center items-center'>Final Value Fee Rate</div>
                         <div className='text-gray-600'>(for the selected category and options)</div>
-                        <div className='flex justify-center items-center mt-3'>{feeRate}% on first $2,500</div>
-                        <div className='flex justify-center items-center'>2.35% afterwards</div>
-                        <div className='flex justify-center items-center'>Plus $0.3</div>
+                        {doublePeak === true ? (<div>
+
+                        <div className='flex justify-center items-center mt-3'>{mainFeeRate}% + $0.3</div>
+                        <div className='flex justify-center items-center mt-3'>if revenue {">"} {peak1} then</div>
+                        <div className='flex justify-center items-center'>{reducedFeeRate1}% + $0.3</div>
+                        <div className='flex justify-center items-center mt-3'>if revenue {">"} {peak2} then</div>
+                        <div className='flex justify-center items-center'>{reducedFeeRate2}% + $0.3</div>
+
+                        </div>) 
+                        
+                        : (<div>
+                            
+                       {optionsContents.itemCategoryDropdonwOptions.label === "NFTs" ? (
+                        <div className='flex justify-center items-center mt-3'>{mainFeeRate}% + $ 0.3</div>
+                       ) : (
+                        <div>
+                        <div className='flex justify-center items-center mt-3'>{mainFeeRate}% on first ${peak}</div>
+                        <div className='flex justify-center items-center'>{reducedFeeRate}% afterwards</div>
+                        
+                        {(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions?.subCategory]?.label === "Athletic Shoes" && itemMarketSoldPrice > 150) === true ? (<div></div>) : (<div className='flex justify-center items-center'>Plus $0.3</div>) }
+                        </div>
+                       )}     
+
+
+
+                        
+                        
+                        </div>) 
+                    }
+
+
                     </div>
                     
                 </div>

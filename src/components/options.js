@@ -25,9 +25,9 @@ const Options = () => {
         eBayStoreOptions : [
             { value: 0, label: 'Starter Store'},
             { value: 1, label: 'Basic Store'},
-            { value: 1, label: 'Premium Store'},
-            { value: 1, label: 'Anchor Store'},
-            { value: 1, label: 'Enterprise Store'},
+            { value: 2, label: 'Premium Store'},
+            { value: 3, label: 'Anchor Store'},
+            { value: 4, label: 'Enterprise Store'},
         ],
 
         salesTaxOptions : [
