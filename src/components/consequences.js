@@ -424,7 +424,7 @@ const Consequnces = () => {
                         options={options}
                     ></Doughnut>
 
-                    <CountryFlag className='absolute bottom-5 right-5' countryCode="US" svg style={{ width: '50px', height: '30px' }} />
+                    <CountryFlag className='absolute bottom-5 right-5' countryCode="US" svg style={{ width: '60px', height: '36px' }} />
 
                 </div>
 
