@@ -50,6 +50,20 @@ const Consequnces = () => {
     let feeRate ;
     let constantFinalValueFee = 0.30
 
+    //yuvarlama
+    function customRound(value, precision) {
+        var multiplier = Math.pow(10, precision);
+    
+        if (value >= 1) {
+            // Round up for values greater than or equal to 1
+            return Math.round(value * multiplier + Number.EPSILON) / multiplier;
+        } else {
+            // Round down for values less than 1
+            return Math.floor(value * multiplier + Number.EPSILON) / multiplier;
+        }
+    }
+
+
     //table1 
     if(optionsContents.eBayStore === false || optionsContents.ebayStoreDropdownOptions.value === 0){
 
@@ -110,7 +124,7 @@ const Consequnces = () => {
 
             }
 
-            theFinalValueFee = (itemMarketSoldPrice * feeRate)/100 + constantFinalValueFee + optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.insertionFee
+            theFinalValueFee = (itemMarketSoldPrice * feeRate)/100 + optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions.subCategory].value.table1.insertionFee
 
         } else {
 
@@ -144,12 +158,8 @@ const Consequnces = () => {
             }
 
 
-            theFinalValueFee = (itemMarketSoldPrice * feeRate)/100 + constantFinalValueFee + optionsContents.itemCategoryDropdonwOptions.value.table1.insertionFee
+            theFinalValueFee = (itemMarketSoldPrice * feeRate)/100 + optionsContents.itemCategoryDropdonwOptions.value.table1.insertionFee
 
-        }
-
-        if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions?.subCategory]?.label === "Athletic Shoes" && itemMarketSoldPrice > 150){
-            theFinalValueFee = theFinalValueFee - constantFinalValueFee
         }
 
     }
@@ -248,71 +258,92 @@ const Consequnces = () => {
             feeRate = optionsContents.itemCategoryDropdonwOptions.value.table2.mainFeeRate
         }
 
-        theFinalValueFee = (itemMarketSoldPrice * feeRate)/100 + constantFinalValueFee
-
-        if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions?.subCategory]?.label === "Athletic Shoes" && itemMarketSoldPrice > 150){
-            theFinalValueFee = theFinalValueFee - constantFinalValueFee 
-        }
+        theFinalValueFee = (itemMarketSoldPrice * feeRate)/100
 
     }
     
-    console.log("fee rate : ", feeRate)
-    //for sales tax
-    let salesTaxCost;
 
-    if(optionsContents.salesTaxDropdownOptions.value === "totalRevenue"){
-        salesTaxCost = (itemMarketSoldPrice*salesTaxValue*feeRate)/(100**2)
-    } else {
-        salesTaxCost = (itemPrice*salesTaxValue*feeRate)/(100**2)
-    }
-     
-    console.log("sales tax rate : ", salesTaxValue , "sales tax cost : ", salesTaxCost)
+    //international sale
+    let internationalSaleDifference;
+    let internationalSaleRate ;
+    if(optionsContents.internationalSale === true){
+        internationalSaleRate = 1.65
+        internationalSaleDifference = (itemMarketSoldPrice * 1.65)/100
     
+    }else {
+            internationalSaleRate = 0
+            internationalSaleDifference = 0
+    }
+    internationalSaleDifference = parseFloat(internationalSaleDifference.toFixed(2))
+
+
     //for promoted listing
 
     let absolutePromotedListingAdRate ;
 
-    optionsContents.promotedListing === false ? absolutePromotedListingAdRate = 0 : optionsContents.promotedListingAdRate === 0 ? absolutePromotedListingAdRate = 0 : absolutePromotedListingAdRate = (optionsContents.promotedListingAdRate + ((salesTaxValue*itemPrice)/10)/itemMarketSoldPrice)
-
-    let promotedListingCost = (itemMarketSoldPrice*absolutePromotedListingAdRate)/100
-    console.log("absolute promoted listing rate : ", absolutePromotedListingAdRate , "promoted listing costs : ", promotedListingCost)
+    optionsContents.promotedListing === false ? absolutePromotedListingAdRate = 0 : absolutePromotedListingAdRate = optionsContents.promotedListingAdRate
     
-    //international sale
-    let internationalSaleDifference;
+    let promotedListingCost = (itemMarketSoldPrice*absolutePromotedListingAdRate)/100
 
-    if(optionsContents.internationalSale === true){
+    // new seller status difference
+
+    let sellertatusDifference;
+
+    if(optionsContents.sellerStatusDropdownOptions.value >= 0){
+
+        sellertatusDifference = (itemMarketSoldPrice * optionsContents.sellerStatusDropdownOptions.value)/100
+
+    }
+
+
+
+    //for sales tax
+    let salesTaxCost;
+
+    if(optionsContents.salesTaxDropdownOptions.value === "totalRevenue"){
+
+        
+        salesTaxCost = ((theFinalValueFee+sellertatusDifference+promotedListingCost+internationalSaleDifference)*salesTaxValue)/100
+    } else {
+
+        salesTaxCost = ((itemPrice*feeRate/100) + (absolutePromotedListingAdRate*itemPrice)/100 + (internationalSaleRate*itemPrice)/100 + (itemPrice * optionsContents.sellerStatusDropdownOptions.value/100))*salesTaxValue/100
+
+    }
+
+    salesTaxCost = customRound(salesTaxCost, 2);
+    
+    console.log("sales tax : ", salesTaxCost)
+    
+    console.log(optionsContents.sellerStatusDropdownOptions.value)
+    if(optionsContents.sellerStatusDropdownOptions.value === -10){
 
         if(optionsContents.salesTaxDropdownOptions.value === "totalRevenue"){
 
-            console.log("item market sold price is equal to : ", itemMarketSoldPrice)
-
-            internationalSaleDifference = (itemMarketSoldPrice * 1.65/100) + (itemMarketSoldPrice*salesTaxValue/100)*(1.65/100)
-
+            salesTaxCost = ((theFinalValueFee+promotedListingCost+internationalSaleDifference)*salesTaxValue)/100
+            
+            sellertatusDifference = ((itemMarketSoldPrice*feeRate)/100 + itemMarketSoldPrice*feeRate*salesTaxValue/100**2)*-10/100
+            
         } else {
-            internationalSaleDifference = (itemMarketSoldPrice * 1.65/100) + (itemPrice*salesTaxValue/100)*(1.65/100)
+    
+            salesTaxCost = ((itemPrice*feeRate/100) + (absolutePromotedListingAdRate*itemPrice)/100 + (internationalSaleRate*itemPrice)/100)*salesTaxValue/100
+    
+            sellertatusDifference = ((itemMarketSoldPrice*feeRate)/100 + itemPrice*feeRate*salesTaxValue/100**2)*-10/100
+
         }
 
-    }else {
-        internationalSaleDifference = 0
+        salesTaxCost = customRound(salesTaxCost, 2);
+
     }
-    internationalSaleDifference = parseFloat(internationalSaleDifference.toFixed(2))
-    console.log("international sale difference : ", internationalSaleDifference)
 
-    //
-    console.log("the final value fee : " , theFinalValueFee)
+    console.log("sales tax cost : ", salesTaxCost)
+    console.log("seller status difference = ", sellertatusDifference)
 
-      let sellertatusDifference;
-
-      if(optionsContents.sellerStatusDropdownOptions.value === -10){
-
-        sellertatusDifference = (salesTaxCost + theFinalValueFee)*optionsContents.sellerStatusDropdownOptions.value/100
-
-      } else {
-        sellertatusDifference = itemMarketSoldPrice*optionsContents.sellerStatusDropdownOptions.value/100
-      }
-
-      let totalFees = sellertatusDifference + theFinalValueFee + internationalSaleDifference + promotedListingCost + salesTaxCost
+      let totalFees = sellertatusDifference + theFinalValueFee + internationalSaleDifference + promotedListingCost + salesTaxCost + constantFinalValueFee
       
+      if(optionsContents.subCategories[optionsContents.itemCategoryDropdonwOptions?.subCategory]?.label === "Athletic Shoes" && itemMarketSoldPrice > 150){
+        totalFees = totalFees - constantFinalValueFee
+    }
+
       let costWithoutFees = itemCost + shippingCost + otherCosts
 
       let totalProfitPerItem = itemMarketSoldPrice - totalFees - costWithoutFees
@@ -326,10 +357,8 @@ const Consequnces = () => {
         textColor = "text-red-600"
       }
 
-      console.log("seller status difference : ", sellertatusDifference)
-
      function calculatePercentage(numerator, denominator) {
-        // Kontrol ekleniyor
+
         if (!isFinite(numerator) || !isFinite(denominator) || denominator === 0) {
             return 0; // veya başka bir değer veya hata işleme
         }
@@ -359,7 +388,7 @@ const Consequnces = () => {
             data: [100-profitPercentage , profitPercentage],
             backgroundColor: [
               "rgb(2, 132, 199)",
-              "rgb(13, 148, 136)",
+              "rgb(16, 185, 129)",
             ],
             hoverOffset: 4,
           },
@@ -424,7 +453,7 @@ const Consequnces = () => {
                         options={options}
                     ></Doughnut>
 
-                    <CountryFlag className='absolute bottom-5 right-5' countryCode="US" svg style={{ width: '60px', height: '36px' }} />
+                    <CountryFlag className='absolute bottom-5 right-5' countryCode="US" svg style={{ width: '64px', height: '32px' }} />
 
                 </div>
 
